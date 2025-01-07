@@ -469,6 +469,7 @@ class TestEmbibeApp(BaseClass):
         PM.menu_change_lang()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.test
     def test_menu_signout(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)

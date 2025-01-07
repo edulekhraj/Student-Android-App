@@ -1,0 +1,25 @@
+Scroll 1: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 2: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 3: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 4: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 5: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 6: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 7: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 8: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 9: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Scroll 10: Element not found, swiping up. Exception: WebDriver.find_elements() takes from 1 to 3 positional arguments but 6 were given
+Max scrolls reached. Element not found using locator: xpath
+Total Questions: 13
+Question 1:    Single Choice
+Question 2:    Single Choice
+Question 3:    Single Choice
+Question 4:    Single Choice
+Question 5:    Single Choice
+Question 6:    Single Choice
+Question 7:    Single Choice
+Question 8:    Single Choice
+Question 9:    Single Choice
+Question 10:    Single Choice
+Question 11:    Single Choice
+Question 12:    Single Choice
+Question 13:    Single Choice
