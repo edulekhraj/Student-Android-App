@@ -50,6 +50,7 @@ class Profile_Menu:
         self.driver.find_element(*Profile_Menu.lang_two_btn).click()
         self.driver.find_element(*Profile_Menu.cancel_btn).click()
         self.driver.find_element(*Profile_Menu.goal_lang_done_btn).click()
+        time.sleep(10)
 
     def menu_manage_profile(self):
         self.driver.find_element(*Profile_Menu.guided_tour_cancel_btn).click()
@@ -74,6 +75,8 @@ class Profile_Menu:
         self.driver.find_element(*Profile_Menu.edit_profile).click()
         self.driver.find_element(*Profile_Menu.profile_name_field).click()
         self.driver.find_element(*Profile_Menu.profile_name_field).clear()
+        time.sleep(2)
+        self.driver.find_element(*Profile_Menu.profile_name_field).click()
         self.driver.find_element(*Profile_Menu.profile_name_field).send_keys(configReader.readConfig('prod', 'student_name'))
         self.driver.find_element(*Profile_Menu.avatar_edit_btn).click()
         self.driver.find_element(*Profile_Menu.avatar_1).click()
@@ -91,9 +94,9 @@ class Profile_Menu:
         self.driver.find_element(*Profile_Menu.change_lang).click()
         time.sleep(3)
         self.driver.find_element(*Profile_Menu.lang_one_btn).click()
-        self.driver.find_element(*Profile_Menu.cancel_btn).click()
+        # self.driver.find_element(*Profile_Menu.cancel_btn).click()
         self.driver.find_element(*Profile_Menu.goal_lang_done_btn).click()
-        time.sleep(2)
+        time.sleep(5)
 
     def menu_tos(self):
         self.driver.find_element(*Profile_Menu.guided_tour_cancel_btn).click()
@@ -119,7 +122,7 @@ class Profile_Menu:
         time.sleep(2)
         self.driver.find_element(*Profile_Menu.feed_back).click()
         time.sleep(2)
-        self.driver.find_element(*Profile_Menu.feed_back_text).send_keys("Test")
+        self.driver.find_element(*Profile_Menu.feed_back_text).send_keys("QA Test")
         self.driver.find_element(*Profile_Menu.feed_back_submit_btn).click()
 
     def menu_sign_out(self):

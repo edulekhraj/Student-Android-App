@@ -15,9 +15,6 @@ def pytest_runtest_makereport(item, call):
     return rep
 
 
-@pytest.fixture
-def browser(request):
-    return request.config.getoption("--browser")
 
 
 @pytest.fixture
@@ -28,7 +25,6 @@ def appiumdriver(request):
         'appActivity': 'com.embibe.jioembibe.mobile.LandingActivity',
         'appPackage': 'com.embibe.student',
         'automationName': 'UiAutomator2',
-
 
         # 'appium:ignoreHiddenApiPolicyError': True  # Corrected to use the string key
     }

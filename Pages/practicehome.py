@@ -36,7 +36,7 @@ class PracticeHome(LearnHome, TestHome):
     add_book_btn = (AppiumBy.ID, 'com.embibe.student:id/btn_myBooks')
     big_book = (AppiumBy.XPATH,
                 '//*[contains(@text, "Embibe Big Books")]/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]')
-
+    deny_mic_access = (AppiumBy.XPATH, "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']")
     def practice_chapter_tile(self):
         self.driver.find_element(*PracticeHome.guided_tour_cancel_btn).click()
         self.driver.find_element(*PracticeHome.practice).click()
@@ -143,7 +143,7 @@ class PracticeHome(LearnHome, TestHome):
 
     def practice_taking(self):
         time.sleep(10)
-
+        self.driver.find_element(*PracticeHome.deny_mic_access).click()
         for i in range(1, 4):
             try:
                 time.sleep(3)

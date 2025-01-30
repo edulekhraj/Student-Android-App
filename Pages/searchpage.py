@@ -48,6 +48,7 @@ class Search_Module(TestHome):
     test_old_ui_start_now_btn = AppiumBy.ID, 'com.embibe.student:id/btn_start'
     test_fb_achieve_btn = AppiumBy.ID, 'com.embibe.student:id/tv_continue_learning'
     practice_close_btn = By.XPATH, '//android.widget.TextView[@text=""]'
+    deny_mic_access = By.XPATH, "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']"
 
     def search_module_click(self):
         self.driver.find_element(*Search_Module.guided_tour_cancel_btn).click()
@@ -74,7 +75,16 @@ class Search_Module(TestHome):
             self.driver.press_keycode(66)
             self.driver.find_element(*Search_Module.learn_tab).click()
             self.driver.find_element(*Search_Module.result_tile).click()
+            try:
+                # Check if the goal change popup is displayed
+                if self.driver.find_element(*Search_Module.change_goal_popup).is_displayed():
+                    self.driver.find_element(*Search_Module.update_goal_btn).click()
+            except:
+                pass
+
             self.video_details()
+
+
 
     def search_practice_click(self):
         self.driver.find_element(*Search_Module.guided_tour_cancel_btn).click()
@@ -122,6 +132,12 @@ class Search_Module(TestHome):
         self.driver.press_keycode(66)
         self.driver.find_element(*Search_Module.books_tab).click()
         self.driver.find_element(*Search_Module.result_tile).click()
+        try:
+        # Check if the goal change popup is displayed
+            if self.driver.find_element(*Search_Module.change_goal_popup).is_displayed():
+                self.driver.find_element(*Search_Module.update_goal_btn).click()
+        except:
+            print("no Goal Pop up Appeared")
         time.sleep(4)
         self.driver.find_element(*Search_Module.share_button).is_displayed()
         # self.driver.find_element(*LearnHome.chapterone).click()
@@ -182,19 +198,27 @@ class Search_Module(TestHome):
         except:
             print("no Goal Pop up Appeared")
         time.sleep(5)
-        if self.driver.find_element(*Search_Module.test_env_popup).is_displayed():
-            self.driver.find_element(*Search_Module.test_env_continue_btn).click()
-            self.driver.find_element(*Search_Module.test_instru_next_btn).click()
-            self.driver.find_element(*Search_Module.test_instru_checkbox_btn).click()
-            self.driver.find_element(*Search_Module.test_i_am_ready_to_begin_btn).click()
-            time.sleep(10)
-            self.take_test()
 
-        elif self.driver.find_element(*Search_Module.test_instru_checkbox_btn).is_displayed():
-             self.driver.find_element(*Search_Module.test_instru_checkbox_btn).click()
-             self.driver.find_element(*Search_Module.test_i_am_ready_to_begin_btn).click()
-             time.sleep(10)
-             self.take_test()
+        try:
+            if self.driver.find_element(*Search_Module.test_env_popup).is_displayed():
+                self.driver.find_element(*Search_Module.test_env_continue_btn).click()
+                self.driver.find_element(*Search_Module.test_instru_next_btn).click()
+                self.driver.find_element(*Search_Module.test_instru_checkbox_btn).click()
+                self.driver.find_element(*Search_Module.test_i_am_ready_to_begin_btn).click()
+                time.sleep(10)
+                self.take_test()
+        except:
+            print("no Goal Pop up Appeared")
+
+        try:
+
+            if self.driver.find_element(*Search_Module.test_instru_checkbox_btn).is_displayed():
+                self.driver.find_element(*Search_Module.test_instru_checkbox_btn).click()
+                self.driver.find_element(*Search_Module.test_old_ui_start_now_btn).click()
+                time.sleep(10)
+                self.take_test()
+        except:
+            pass
 
 
         # Fallback: Check if the feedback achievement button is displayed
@@ -217,7 +241,7 @@ class Search_Module(TestHome):
 
     def practice_taking(self):
         time.sleep(10)
-
+        self.driver.find_element(*Search_Module.deny_mic_access).click()
         for i in range(1, 4):
             try:
                 time.sleep(3)

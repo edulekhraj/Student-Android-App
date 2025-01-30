@@ -50,7 +50,7 @@ class LearnHome(TestHome):
     practice_tile_click = AppiumBy.XPATH, '(//android.widget.ImageView[@resource-id="com.embibe.student:id/thumbPracticeForChapterIV"])[1]'
     test_on_this_chapter = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="Tests on this chapter"]'
     test_tile_click = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/testBannerCardView"])[1]'
-
+    deny_mic_access = AppiumBy.XPATH, "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']"
     def guided_tour(self):
         for i in range(1, 6):
             self.driver.find_element(*LearnHome.guided_tour_next_btn).click()
@@ -156,6 +156,7 @@ class LearnHome(TestHome):
         ScrollUtil.scroll_until_element_is_visible(self.driver, LearnHome.trending_videos_tile)
         self.driver.find_element(*LearnHome.trending_videos_tile).click()
         time.sleep(2)
+        ScrollUtil.scroll_until_element_is_visible(self.driver, LearnHome.related_video_tile)
         self.driver.find_element(*LearnHome.related_video_tile).click()
         try:
             if self.driver.find_element(AppiumBy.XPATH,
@@ -368,7 +369,7 @@ class LearnHome(TestHome):
 
     def practice_taking(self):
         time.sleep(10)
-
+        self.driver.find_element(*LearnHome.deny_mic_access).click()
         for i in range(1, 4):
             try:
                 time.sleep(3)

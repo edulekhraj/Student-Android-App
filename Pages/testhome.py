@@ -43,7 +43,7 @@ class TestHome:
     practice_close_btn = By.XPATH, '//android.widget.TextView[@text=""]'
     test_on_this_chapter = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="More Tests on this Syllabus"]'
     test_tile_click = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/testBannerCardView"])[1]'
-
+    deny_mic_access = By.XPATH, "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']"
     def five_mins_custom_test(self):
         self.driver.find_element(*TestHome.guided_tour_cancel_btn).click()
         time.sleep(3)
@@ -136,7 +136,6 @@ class TestHome:
         self.driver.press_keycode(4)
 
     def recommended_learning_to_ace_in_trending_test(self):
-
         self.driver.find_element(*TestHome.guided_tour_cancel_btn).click()
         time.sleep(3)
         self.driver.find_element(*TestHome.test_tab).click()
@@ -387,7 +386,7 @@ class TestHome:
 
     def practice_taking(self):
         time.sleep(10)
-
+        self.driver.find_element(*TestHome.deny_mic_access).click()
         for i in range(1, 4):
             try:
                 time.sleep(3)
