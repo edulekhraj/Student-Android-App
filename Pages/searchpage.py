@@ -28,7 +28,7 @@ class Search_Module(TestHome):
     ptr_tab = AppiumBy.XPATH, '//android.widget.TextView[@text="Points to Remember"]'
     guided_tour_cancel_btn = AppiumBy.ID, 'com.embibe.student:id/ivClose'
     home_tab = AppiumBy.ID, 'com.embibe.student:id/navigation_home'
-    bookmark_button = AppiumBy.ID, 'com.embibe.student:id/bookmark'
+    bookmark_button = AppiumBy.XPATH, '//android.view.View[@resource-id="PracticeConatiner"]/android.view.View[1]/android.view.View[1]/android.view.View/android.view.View[1]'
     download_button = AppiumBy.ID, 'com.embibe.student:id/fl_download_container'
     video_close_button = AppiumBy.ID, 'com.embibe.student:id/btn_quit'
     video_resume_button = AppiumBy.ID, 'com.embibe.student:id/btn_resume'
@@ -243,6 +243,8 @@ class Search_Module(TestHome):
         time.sleep(10)
         self.driver.find_element(*Search_Module.deny_mic_access).click()
         for i in range(1, 4):
+            self.driver.find_element(*Search_Module.bookmark_button).click()
+
             try:
                 time.sleep(3)
                 question_element = self.driver.find_element(AppiumBy.XPATH,

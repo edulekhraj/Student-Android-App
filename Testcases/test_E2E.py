@@ -1,5 +1,7 @@
 import time
 import pytest
+
+from Pages.achievehome import achieve_home
 from Pages.landingPages import landingpages
 from Pages.practicehome import PracticeHome
 from Pages.profile_menu import Profile_Menu
@@ -279,6 +281,7 @@ class TestEmbibeApp(BaseClass):
         SM.search_learn_video_click()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.searchh
     def test_search_practice(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -462,8 +465,6 @@ class TestEmbibeApp(BaseClass):
         PH = PracticeHome(self.driver)
         PH.embibe_big_book()
 
-
-    @pytest.mark.sample
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     def test_profile_menu_change_language(self):
         self._login_with_password()
@@ -476,8 +477,60 @@ class TestEmbibeApp(BaseClass):
         PM = Profile_Menu(self.driver)
         PM.hero_banner_change_goal_exam()
 
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_achieve_create_DT1(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.create_diagnostic_test()
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achievee
+    def test_achieve_start_DT1(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.start_diagnostic_test1()
 
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_achieve_start_DT2(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.start_diagnostic_test2()
 
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_achieve_explore_mastery(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.explore_mastery_tile()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_generate_PAJ(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.create_PAJ_journey()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_achieve_I_will_take_test_later(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.i_will_start_test_later()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_start_PAJ_journey(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.start_PAJ()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    def test_achieve_full_journey(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.achieve_full_journey()
 
 
 

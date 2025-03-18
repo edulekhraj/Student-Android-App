@@ -18,6 +18,7 @@ class PracticeHome(LearnHome, TestHome):
     practice_chapter = (AppiumBy.XPATH,
                         '//*[contains(@text, "Adaptive Practice Chapters From")]/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]')
     start_practice_btn = (AppiumBy.ID, 'com.embibe.student:id/tvSummaryLearnButton')
+    bookmark_button = AppiumBy.XPATH, '//android.view.View[@resource-id="PracticeConatiner"]/android.view.View[1]/android.view.View[1]/android.view.View/android.view.View[1]'
     guided_tour_cancel_btn = (AppiumBy.ID, 'com.embibe.student:id/ivClose')
     sincerity_score_tile = (AppiumBy.ID, 'com.embibe.student:id/ivSincerityScorePlay')
     attempt_quality_jar = (AppiumBy.ID, 'com.embibe.student:id/jar_recall')
@@ -144,7 +145,9 @@ class PracticeHome(LearnHome, TestHome):
     def practice_taking(self):
         time.sleep(10)
         self.driver.find_element(*PracticeHome.deny_mic_access).click()
+
         for i in range(1, 4):
+            self.driver.find_element(*PracticeHome.bookmark_button).click()
             try:
                 time.sleep(3)
                 question_element = self.driver.find_element(AppiumBy.XPATH,

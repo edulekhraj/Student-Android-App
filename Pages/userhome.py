@@ -91,7 +91,7 @@ class UserHome:
         time.sleep(3)
         ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.videos_bookmark_tile)
         self.driver.find_element(*UserHome.videos_bookmark_tile).click()
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(*UserHome.play_all_btn).click()
         time.sleep(5)
 
@@ -103,6 +103,6 @@ class UserHome:
         time.sleep(3)
         ScrollUtil.swipeUp(1, self.driver)
         self.driver.find_element(*UserHome.question_bookmark_tile).click()
-        time.sleep(10)
+        time.sleep(5)
         self.driver.find_element(*UserHome.play_all_btn).click()
         time.sleep(5)

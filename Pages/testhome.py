@@ -28,7 +28,7 @@ class TestHome:
     instruct_chkbox = AppiumBy.ID, 'com.embibe.student:id/iv_checkbox'
     i_am_ready_to_begin_btn = AppiumBy.ID, 'com.embibe.student:id/btn_ready'
     old_test_ui_start_test_btn = AppiumBy.ID, 'com.embibe.student:id/btn_start'
-    submit_btn = AppiumBy.ID, 'com.embibe.student:id/btnSubmitTest'
+    submit_btn = AppiumBy.XPATH, 'com.embibe.student:id/btnSubmitTest'
     submit_confirm_btn = AppiumBy.ID, 'com.embibe.student:id/btnSubmitTest'
     view_fb_btn = AppiumBy.ID, 'com.embibe.student:id/btnContinueTest'
     trending_test_tile = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="Trending Tests for Your Exam"]/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout[1]/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]'
@@ -44,6 +44,7 @@ class TestHome:
     test_on_this_chapter = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="More Tests on this Syllabus"]'
     test_tile_click = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/testBannerCardView"])[1]'
     deny_mic_access = By.XPATH, "//android.widget.Button[@resource-id='com.android.permissioncontroller:id/permission_deny_button']"
+    bookmark_button = By.XPATH, "//android.view.View[@resource-id='PracticeConatiner']/android.view.View[1]/android.view.View[1]/android.view.View/android.view.View[1]/android.widget.TextView"
     def five_mins_custom_test(self):
         self.driver.find_element(*TestHome.guided_tour_cancel_btn).click()
         time.sleep(3)
@@ -387,12 +388,14 @@ class TestHome:
     def practice_taking(self):
         time.sleep(10)
         self.driver.find_element(*TestHome.deny_mic_access).click()
+
         for i in range(1, 4):
             try:
                 time.sleep(3)
                 question_element = self.driver.find_element(AppiumBy.XPATH,
                                                             '//android.view.View[@resource-id="PracticeConatiner"]/android.view.View/android.widget.TextView[1]').text
                 print(question_element)
+                self.driver.find_element(*TestHome.bookmark_button).click()
 
                 if "Multiple Choice" in question_element:
                     time.sleep(5)
