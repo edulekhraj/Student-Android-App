@@ -23,11 +23,11 @@ class landingpages:
     forgot_password_link = (AppiumBy.ID, "com.embibe.student:id/tvForgotPassword")
     forgot_email_field = (AppiumBy.ID, "com.embibe.student:id/et_emailMobile")
     location_continue_btn = (AppiumBy.ID, 'com.embibe.student:id/btn_continue_location_access')
-    loc_not_allow = (AppiumBy.ID, 'com.android.permissioncontroller:id/permission_deny_button')
+    loc_not_allow = (AppiumBy.XPATH, '//*[contains(@text, "thanks")]')
 
 
     def signinusingpassword(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.get_started).click()
         time.sleep(5)
@@ -41,7 +41,7 @@ class landingpages:
         time.sleep(10)
 
     def tosinsigninpage(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.get_started).click()
         self.driver.find_element(*landingpages.tos).click()
@@ -52,7 +52,7 @@ class landingpages:
 
 
     def privacypolicyinsigninpage(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.get_started).click()
         self.driver.find_element(*landingpages.privacypolicy).click()
@@ -63,7 +63,7 @@ class landingpages:
 
 
     def signinusingOTP(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.get_started).click()
         self.driver.find_element(*landingpages.stu_email_field).click()
@@ -72,7 +72,7 @@ class landingpages:
         time.sleep(10)
 
     def clickTOS(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.tos).click()
         time.sleep(5)
@@ -91,7 +91,7 @@ class landingpages:
         #     self.driver.find_element(*landingpages.tos).click()
 
     def clickPrivacyPolicy(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.privacypolicy).click()
         time.sleep(5)
@@ -111,7 +111,7 @@ class landingpages:
 
 
     def clickforgotpassword(self):
-        self.driver.find_element(*landingpages.location_continue_btn).click()
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
         self.driver.find_element(*landingpages.loc_not_allow).click()
         self.driver.find_element(*landingpages.get_started).click()
         self.driver.find_element(*landingpages.click_using_password_link).click()
