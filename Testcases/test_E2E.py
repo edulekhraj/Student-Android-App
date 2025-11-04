@@ -627,6 +627,24 @@ class TestEmbibeApp(BaseClass):
         AH.explore_mastery_tile()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.assignment
+    def test_school_test_assignment(self):
+        UH = UserHome(self.driver)
+        UH.UH_School_Test_Assignment()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.assignment
+    def test_school_Prerequisite_assignment(self):
+        UH = UserHome(self.driver)
+        UH.UH_School_Prerequisite_Videos_Assignment()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.assignment
+    def test_school_Recap_Videos_assignment(self):
+        UH = UserHome(self.driver)
+        UH.UH_School_Recap_Videos_Assignment()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     def test_profile_menu_change_language(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)

@@ -45,6 +45,25 @@ class landingpages:
         self.driver.find_element(*landingpages.stu_proceed_btn).click()
         time.sleep(10)
 
+    def school_credential_login(self):
+        # self.driver.find_element(*landingpages.location_continue_btn).click()
+        try:
+            self.driver.find_element(*landingpages.loc_not_allow).click()
+            self.driver.find_element(*landingpages.get_started).click()
+        except:
+            self.driver.find_element(*landingpages.get_started).click()
+        time.sleep(5)
+        self.driver.find_element(*landingpages.stu_email_field).click()
+        time.sleep(5)
+        self.driver.find_element(*landingpages.stu_email_field).send_keys(
+            configReader.readConfig('prod', 'school_username'))
+        self.driver.find_element(*landingpages.click_using_password_link).click()
+        self.driver.find_element(*landingpages.stu_password_field).send_keys(
+            configReader.readConfig('prod', 'password'))
+        time.sleep(3)
+        self.driver.find_element(*landingpages.stu_proceed_btn).click()
+        time.sleep(10)
+
 
 
     def tosinsigninpage(self):

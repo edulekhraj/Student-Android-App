@@ -1,11 +1,15 @@
 import time
 
 from appium.webdriver.common.appiumby import AppiumBy
+from selenium.common import NoSuchElementException
 
+from Pages.landingPages import landingpages
+from Pages.searchpage import Search_Module
+from Pages.testhome import TestHome
 from Utilities.scroll_util import ScrollUtil
 
 
-class UserHome:
+class UserHome(TestHome):
 
     def __init__(self, driver):
         self.driver = driver
@@ -33,6 +37,16 @@ class UserHome:
     videos_bookmark_tile = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/container"])[1]'
     question_bookmark_tile =AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/container"])[2]'
     play_all_btn = AppiumBy.ID, 'com.embibe.student:id/btn_play_all'
+    school_test_carousel = AppiumBy.XPATH, "//*[contains(@text,'Test from')]"
+    school_test_carousel_1_tile = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/fl_container"])[3]/android.view.ViewGroup[1]'
+    assignment_card = AppiumBy.XPATH, '//android.view.ViewGroup[@resource-id="com.embibe.student:id/cl_custom_test_title"]'
+    school_assignment_carousel = AppiumBy.XPATH,  "//*[contains(@text,'Assignment from')]"
+    school_assignment_carousel_1_tile = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/fl_container"])[1]/android.view.ViewGroup[1]'
+    school_prerequisite_carousel = AppiumBy.XPATH, "//*[contains(@text,'Pre-Requisite Readiness Videos')]"
+    school_prerequisite_carousel_1_tile = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/fl_container"])[5]/android.view.ViewGroup[1]'
+    school_recap_carousel = AppiumBy.XPATH, "//*[contains(@text,'Recap Videos from')]"
+    school_recap_carousel_1_tile = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/fl_container"])[5]/android.view.ViewGroup[1]'
+    assignment_video_card = AppiumBy.XPATH, '(//android.widget.ImageView[@resource-id="com.embibe.student:id/imgBanner"])[1]'
 
     # def UH_module_click(self):
     #     self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
@@ -54,6 +68,8 @@ class UserHome:
     #     time.sleep(3)
     #     ScrollUtil.swipeUp(1, self.driver)
     #     time.sleep(3)
+
+
 
     def UH_add_fav_books(self):
         self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
@@ -111,3 +127,78 @@ class UserHome:
         time.sleep(5)
         self.driver.find_element(*UserHome.play_all_btn).click()
         time.sleep(5)
+
+    def school_cred(self):
+        lp = landingpages(self.driver)
+        lp.school_credential_login()
+
+    def UH_School_Test_Assignment(self):
+        self.school_cred()
+        self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
+        self.driver.find_element(*UserHome.home_tab).click()
+        time.sleep(5)
+        ScrollUtil.swipeUp(1, self.driver)
+        ScrollUtil.scroll_until_element_is_visible(self.driver,UserHome.school_test_carousel)
+        time.sleep(3)
+        self.driver.find_element(*UserHome.school_test_carousel_1_tile).click()
+        time.sleep(3)
+        self.driver.find_element(*UserHome.assignment_card).click()
+        self.test_env_selection()
+
+    def UH_School_Recap_Videos_Assignment(self):
+        self.school_cred()
+        self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
+        self.driver.find_element(*UserHome.home_tab).click()
+        time.sleep(5)
+        ScrollUtil.swipeUp(1, self.driver)
+        ScrollUtil.scroll_until_element_is_visible(self.driver,UserHome.school_recap_carousel)
+        time.sleep(2)
+        self.driver.find_element(*UserHome.school_recap_carousel_1_tile).click()
+        time.sleep(3)
+        self.driver.find_element(*UserHome.assignment_video_card).click()
+        self.video_details()
+
+    def UH_School_Prerequisite_Videos_Assignment(self):
+        self.school_cred()
+        self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
+        self.driver.find_element(*UserHome.home_tab).click()
+        time.sleep(5)
+        ScrollUtil.swipeUp(1, self.driver)
+        ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.school_prerequisite_carousel)
+        time.sleep(2)
+        self.driver.find_element(*UserHome.school_prerequisite_carousel_1_tile).click()
+        time.sleep(3)
+        self.driver.find_element(*UserHome.assignment_video_card).click()
+        self.video_details()
+
+    def test_env_selection(self):
+        try:
+            if self.driver.find_element(*Search_Module.test_env_popup).is_displayed():
+                self.driver.find_element(*Search_Module.test_env_continue_btn).click()
+                self.driver.find_element(*Search_Module.test_instru_next_btn).click()
+                try:
+                    self.driver.find_element(*Search_Module.test_instru_checkbox_btn).click()
+                    self.driver.find_element(*Search_Module.test_i_am_ready_to_begin_btn).click()
+                    time.sleep(10)
+                    self.take_test()
+                except:
+                    print("The Test got Expired")
+
+
+        except:
+            print("no Goal Pop up Appeared")
+
+        try:
+
+            if self.driver.find_element(*Search_Module.test_instru_checkbox_btn).is_displayed():
+                self.driver.find_element(*Search_Module.test_instru_checkbox_btn).click()
+                self.driver.find_element(*Search_Module.test_old_ui_start_now_btn).click()
+                time.sleep(10)
+                self.take_test()
+        except:
+            pass
+
+
+        # Fallback: Check if the feedback achievement button is displayed
+        else:
+             print("Test already submitted")
