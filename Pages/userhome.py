@@ -171,6 +171,44 @@ class UserHome(TestHome):
         self.driver.find_element(*UserHome.assignment_video_card).click()
         self.video_details()
 
+    def UH_School_Assignment_Assignment(self):
+        self.school_cred()
+        self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
+        self.driver.find_element(*UserHome.home_tab).click()
+        time.sleep(5)
+        ScrollUtil.swipeUp(1, self.driver)
+        ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.school_assignment_carousel)
+        time.sleep(2)
+        self.driver.find_element(*UserHome.school_assignment_carousel_1_tile).click()
+        time.sleep(3)
+        try:
+            # Check for assigned video
+            video = self.driver.find_element(AppiumBy.XPATH, "//*[@text='Assigned Video']")
+            if video.is_displayed():
+                self.driver.find_element(AppiumBy.XPATH,
+                                         '(//android.widget.ImageView[@resource-id="com.embibe.student:id/imgBanner"])[1]').click()
+                self.video_details()
+
+                # Ensure we’re back on home/assignment screen
+                time.sleep(2)
+        except Exception as e:
+            print("No video assigned:", e)
+
+        # Add small delay before checking next carousel
+        time.sleep(2)
+
+        try:
+            # Check for assigned practice
+            practice = self.driver.find_element(AppiumBy.XPATH, "//*[@text='Assigned Practice']")
+            if practice.is_displayed():
+                self.driver.find_element(AppiumBy.XPATH,
+                                         '(//android.widget.ImageView[@resource-id="com.embibe.student:id/imgBanner"])[2]').click()
+                time.sleep(2)
+                self.practice_taking()
+        except Exception as e:
+            print("No practice assigned:", e)
+
+
     def test_env_selection(self):
         try:
             if self.driver.find_element(*Search_Module.test_env_popup).is_displayed():
@@ -202,3 +240,5 @@ class UserHome(TestHome):
         # Fallback: Check if the feedback achievement button is displayed
         else:
              print("Test already submitted")
+
+
