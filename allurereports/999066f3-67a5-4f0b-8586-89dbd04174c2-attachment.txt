@@ -1,8 +1,0 @@
-4
-Total Questions: 6
-Question 1:    Single Choice
-Question 2:    Subjective Answer
-Question 3:    Single Choice
-Question 4:    Single Choice
-Question 5:    Subjective Answer
-Question 6:    Subjective Answer

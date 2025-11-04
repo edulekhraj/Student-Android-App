@@ -16,17 +16,20 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver")
     @pytest.mark.login
+    @pytest.mark.smoke
     def _login_with_password(self):
         lp = landingpages(self.driver)
         lp.signinusingpassword()
 
     @pytest.mark.usefixtures("appiumdriver")
     @pytest.mark.login
+    @pytest.mark.smoke
     def test_login_with_password(self):
         self._login_with_password()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.login
+    @pytest.mark.smoke
     def test_login_with_OTP(self):
         lp = landingpages(self.driver)
         lp.signinusingOTP()
@@ -43,6 +46,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.landingpage
+    @pytest.mark.smoke
     def test_click_tos(self):
         lp = landingpages(self.driver)
         lp.clickTOS()
@@ -51,6 +55,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.landingpage
+    @pytest.mark.smoke
     def test_click_PP(self):
         lp = landingpages(self.driver)
         lp.clickPrivacyPolicy()
@@ -71,6 +76,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_edit_goal_exam(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -78,6 +84,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_guided_tour(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -86,6 +93,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_module_click(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -93,6 +101,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_trending_video_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -114,6 +123,7 @@ class TestEmbibeApp(BaseClass):
     #
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_embibe_explainer_video_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -135,6 +145,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_books_with_videos_solutions_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -142,6 +153,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_learn_chapter_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -158,6 +170,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_learn_sincerity_score_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -166,6 +179,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.learn
+    @pytest.mark.smoke
     def test_learn_embibe_explainers_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -206,6 +220,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.test
+    @pytest.mark.smoke
     def test_continue_learning_tile(self):
         self._login_with_password()
         LH = LearnHome(self.driver)
@@ -214,6 +229,7 @@ class TestEmbibeApp(BaseClass):
     #
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.test
+    @pytest.mark.smoke
     def test_five_mins_custom_test_tile(self):
         self._login_with_password()
         TH = TestHome(self.driver)
@@ -221,6 +237,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.test
+    @pytest.mark.smoke
     def test_custom_test_tile(self):
         self._login_with_password()
         TH = TestHome(self.driver)
@@ -256,6 +273,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.test
+    @pytest.mark.smoke
     def test_full_test_tile(self):
         self._login_with_password()
         TH = TestHome(self.driver)
@@ -312,6 +330,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_module(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -319,6 +338,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_video(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -326,6 +346,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_practice(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -333,12 +354,14 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_questions(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
         SM.search_question_click()
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_books(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -346,6 +369,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_ptr(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -353,6 +377,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.search
+    @pytest.mark.smoke
     def test_search_test(self):
         self._login_with_password()
         SM = Search_Module(self.driver)
@@ -360,6 +385,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_profile_menu(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -367,6 +393,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_edit_profile(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -374,12 +401,14 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_profile_menu_settings(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
         PM.menu_settings()
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_menu_tos(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -387,6 +416,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_menu_privacy_policy(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -401,6 +431,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_menu_feedback(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -414,6 +445,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.userhome
+    @pytest.mark.smoke
     def test_UH_add_fav_book_click(self):
         self._login_with_password()
         UH = UserHome(self.driver)
@@ -421,6 +453,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.userhome
+    @pytest.mark.smoke
     def test_UH_test_i_have_taken(self):
         self._login_with_password()
         UH = UserHome(self.driver)
@@ -428,6 +461,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.userhome
+    @pytest.mark.smoke
     def test_UH_bookmark_videos(self):
         self._login_with_password()
         UH = UserHome(self.driver)
@@ -435,6 +469,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.userhome
+    @pytest.mark.smoke
     def test_UH_bookmark_questions(self):
         self._login_with_password()
         UH = UserHome(self.driver)
@@ -442,13 +477,14 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.profile
+    @pytest.mark.smoke
     def test_menu_signout(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
         PM.menu_sign_out()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
-    @pytest.mark.practice
+    @pytest.mark.Homee
     def test_UH_embibe_big_books(self):
         self._login_with_password()
         UH = UserHome(self.driver)
@@ -457,6 +493,7 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.practice
+    @pytest.mark.smokee
     def test_practice_chapter(self):
         self._login_with_password()
         PH = PracticeHome(self.driver)
@@ -526,12 +563,7 @@ class TestEmbibeApp(BaseClass):
         PH.embibe_big_book()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
-    def test_profile_menu_change_language(self):
-        self._login_with_password()
-        PM = Profile_Menu(self.driver)
-        PM.menu_change_lang()
-
-    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.smoke
     def test_hero_banner_change_goal_exam(self):
         self._login_with_password()
         PM = Profile_Menu(self.driver)
@@ -559,13 +591,6 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.achieve
-    def test_achieve_explore_mastery(self):
-        self._login_with_password()
-        AH = achieve_home(self.driver)
-        AH.explore_mastery_tile()
-
-    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
-    @pytest.mark.achieve
     def test_generate_PAJ(self):
         self._login_with_password()
         AH = achieve_home(self.driver)
@@ -580,19 +605,32 @@ class TestEmbibeApp(BaseClass):
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.achieve
-   
     def test_start_PAJ_journey(self):
         self._login_with_password()
         AH = achieve_home(self.driver)
         AH.start_PAJ()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
-    @pytest.mark.achieve
-    
+    @pytest.mark.achievee
+    @pytest.mark.smoke
     def test_achieve_full_journey(self):
         self._login_with_password()
         AH = achieve_home(self.driver)
         AH.achieve_full_journey()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.achieve
+    @pytest.mark.smoke
+    def test_achieve_explore_mastery(self):
+        self._login_with_password()
+        AH = achieve_home(self.driver)
+        AH.explore_mastery_tile()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    def test_profile_menu_change_language(self):
+        self._login_with_password()
+        PM = Profile_Menu(self.driver)
+        PM.menu_change_lang()
 
 
 

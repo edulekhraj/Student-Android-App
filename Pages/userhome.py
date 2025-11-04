@@ -69,18 +69,23 @@ class UserHome:
     def UH_Test_i_have_taken(self):
         self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
         self.driver.find_element(*UserHome.home_tab).click()
-        ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.test_i_have_taken)
-        time.sleep(5)
-        self.driver.find_element(*UserHome.click_test_tile).click()
-        self.driver.find_element(*UserHome.view_test_fb_btn).click()
-        time.sleep(5)
-        self.driver.find_element(*UserHome.test_fb_achieve_btn).click()
+        try:
+            ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.test_i_have_taken)
+            time.sleep(5)
+            self.driver.find_element(*UserHome.click_test_tile).click()
+            self.driver.find_element(*UserHome.view_test_fb_btn).click()
+            time.sleep(5)
+            self.driver.find_element(*UserHome.test_fb_achieve_btn).click()
+        except:
+            print("No tests taken yet")
+
 
     def UH_embibe_big_books(self):
         self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
         self.driver.find_element(*UserHome.home_tab).click()
         time.sleep(3)
         ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.the_embibe_big_books)
+        ScrollUtil.swipeUp(1, self.driver)
         self.driver.find_element(*UserHome.embibe_big_books).click()
         time.sleep(3)
 

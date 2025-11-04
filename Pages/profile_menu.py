@@ -47,8 +47,8 @@ class Profile_Menu:
         self.driver.find_element(*Profile_Menu.exam_search_btn).click()
         self.driver.find_element(*Profile_Menu.exam_search_btn).send_keys(configReader.readConfig('prod', 'exam'))
         self.driver.find_element(*Profile_Menu.goal_selection).click()
-        self.driver.find_element(*Profile_Menu.lang_two_btn).click()
-        self.driver.find_element(*Profile_Menu.cancel_btn).click()
+        # self.driver.find_element(*Profile_Menu.lang_one_btn).click()
+        # self.driver.find_element(*Profile_Menu.cancel_btn).click()
         self.driver.find_element(*Profile_Menu.goal_lang_done_btn).click()
         time.sleep(10)
 

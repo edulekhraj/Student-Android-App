@@ -41,8 +41,10 @@ class LearnHome(TestHome):
     sincerity_score_tile = AppiumBy.ID, 'com.embibe.student:id/ivSincerityScorePlay'
     sincerity_score_close_btn = AppiumBy.ID, 'com.embibe.student:id/btn_quit'
     learn_PTR = AppiumBy.ID, 'com.embibe.student:id/clFullTileCheatSheet'
-    topics_in_this_chapter = AppiumBy.XPATH, '(//android.widget.LinearLayout[@resource-id="com.embibe.student:id/llTile"])[1]'
-    embibe_explainers = AppiumBy.XPATH, '(//android.widget.ImageView[@resource-id="com.embibe.student:id/imgBanner"])[3]'
+    topics_in_this_chapter = AppiumBy.XPATH, '//*[@text="Topics in this chapter"]'
+    topics_in_this_chapter_tile = AppiumBy.XPATH, '(//android.widget.LinearLayout[@resource-id="com.embibe.student:id/llTile"])[1]'
+    embibe_explainer_carousel = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="EMBIBE EXPLAINERS"]'
+    embibe_explainers_tile = AppiumBy.XPATH, '(//android.widget.ImageView[@resource-id="com.embibe.student:id/imgBanner"])[3]'
     prerequisite_topics_carousel = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="Prerequisite Topics to Ace this Topic"]'
     prerequisite_topics_videos = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="Prerequisite Topics to Ace this Topic"]/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/(//android.widget.LinearLayout[@resource-id="com.embibe.student:id/llTile"])[1]'
     chapterone = AppiumBy.XPATH, '(//android.view.ViewGroup[@resource-id="com.embibe.student:id/clBookChapter"])[1]'
@@ -175,6 +177,7 @@ class LearnHome(TestHome):
         self.driver.find_element(*LearnHome.guided_tour_cancel_btn).click()
         time.sleep(5)
         ScrollUtil.scroll_until_element_is_visible(self.driver, LearnHome.books_tile)
+        # ScrollUtil.swipeUp(1,self.driver)
         self.driver.find_element(*LearnHome.books_tile).click()
         self.driver.find_element(*LearnHome.chapterone).click()
         self.driver.find_element(*LearnHome.chapterone).click()
@@ -245,8 +248,9 @@ class LearnHome(TestHome):
         ScrollUtil.scroll_until_element_is_visible(self.driver, LearnHome.learn_chapter_tile)
         time.sleep(5)
         self.driver.find_element(*LearnHome.learn_chapter_tile).click()
-        ScrollUtil.scroll_until_element_is_visible(self.driver, *LearnHome.embibe_explainers)
-        self.driver.find_element(*LearnHome.embibe_explainers).click()
+        time.sleep(3)
+        ScrollUtil.scroll_until_element_is_visible(self.driver, LearnHome.embibe_explainer_carousel)
+        self.driver.find_element(*LearnHome.embibe_explainers_tile).click()
         try:
             if self.driver.find_element(AppiumBy.XPATH,
                                         '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.view.ViewGroup/android.view.ViewGroup').is_displayed():
@@ -267,8 +271,10 @@ class LearnHome(TestHome):
         ScrollUtil.scroll_until_element_is_visible(self.driver, LearnHome.learn_chapter_tile)
         time.sleep(5)
         self.driver.find_element(*LearnHome.learn_chapter_tile).click()
-        ScrollUtil.scroll_until_element_is_visible(self.driver, *LearnHome.topics_in_this_chapter)
-        self.driver.find_element(*LearnHome.topics_in_this_chapter).click()
+        time.sleep(3)
+        # ScrollUtil.scroll_until_element_is_visible(self.driver, *LearnHome.topics_in_this_chapter)
+        ScrollUtil.swipeUp(1,self.driver)
+        self.driver.find_element(*LearnHome.topics_in_this_chapter_tile).click()
 
         self.driver.find_element(*LearnHome.learn_button).click()
         try:

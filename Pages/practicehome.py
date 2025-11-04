@@ -144,7 +144,10 @@ class PracticeHome(LearnHome, TestHome):
 
     def practice_taking(self):
         time.sleep(10)
-        self.driver.find_element(*PracticeHome.deny_mic_access).click()
+        try:
+            self.driver.find_element(*PracticeHome.deny_mic_access).click()
+        except:
+            pass
 
         for i in range(1, 4):
             self.driver.find_element(*PracticeHome.bookmark_button).click()

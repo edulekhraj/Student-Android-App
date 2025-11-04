@@ -22,15 +22,16 @@ def appiumdriver(request):
         'appActivity': 'com.embibe.jioembibe.mobile.LandingActivity',
         'appPackage': 'com.embibe.student',
         'automationName': 'UiAutomator2',
-         'udid' : '100ba177',
+         # 'udid' : '25640569',
          'ignoreHiddenApiPolicyError' : True,  # Corrected to use the string key
-        'autoGrantPermissions': True
+        'autoGrantPermissions': True,
+        'appWaitForLaunch': False
 
     }
     global driver
     option=UiAutomator2Options().load_capabilities(desired_caps)
     driver = webdriver.Remote("http://127.0.0.1:4723", options=option)
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(10)
     request.cls.driver = driver
     yield driver
     driver.quit()

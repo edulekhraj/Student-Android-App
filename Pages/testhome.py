@@ -53,11 +53,11 @@ class TestHome:
         ScrollUtil.scroll_until_element_is_visible(self.driver, TestHome.custom_test_tile)
         self.driver.find_element(*TestHome.custom_test_tile).click()
         sub_count = self.driver.find_elements(AppiumBy.XPATH,
-                                              '//androidx.recyclerview.widget.RecyclerView[@resource-id="com.embibe.student:id/rv_subjects"]/(//android.view.ViewGroup[@resource-id="com.embibe.student:id/cl_root"])')
+                                              '//android.widget.GridView[@resource-id="com.embibe.student:id/rv_subjects"]/androidx.cardview.widget.CardView')
         print(len(sub_count))
         for i in range(1, len(sub_count) + 1):
             self.driver.find_element(AppiumBy.XPATH,
-                                     '//androidx.recyclerview.widget.RecyclerView[@resource-id="com.embibe.student:id/rv_subjects"]/(//android.view.ViewGroup[@resource-id="com.embibe.student:id/cl_root"])[' + str(
+                                     '//android.widget.GridView[@resource-id="com.embibe.student:id/rv_subjects"]/androidx.cardview.widget.CardView[' + str(
                                          i) + ']').click()
 
         self.driver.find_element(*TestHome.continue_btn).click()
@@ -92,11 +92,11 @@ class TestHome:
         ScrollUtil.scroll_until_element_is_visible(self.driver, TestHome.custom_test_tile)
         self.driver.find_element(*TestHome.custom_test_tile).click()
         sub_count = self.driver.find_elements(AppiumBy.XPATH,
-                                              '//androidx.recyclerview.widget.RecyclerView[@resource-id="com.embibe.student:id/rv_subjects"]/(//android.view.ViewGroup[@resource-id="com.embibe.student:id/cl_root"])')
+                                              '//android.widget.GridView[@resource-id="com.embibe.student:id/rv_subjects"]/androidx.cardview.widget.CardView')
         print(len(sub_count))
         for i in range(1, len(sub_count) + 1):
             self.driver.find_element(AppiumBy.XPATH,
-                                     '//androidx.recyclerview.widget.RecyclerView[@resource-id="com.embibe.student:id/rv_subjects"]/(//android.view.ViewGroup[@resource-id="com.embibe.student:id/cl_root"])[' + str(
+                                     '//android.widget.GridView[@resource-id="com.embibe.student:id/rv_subjects"]/androidx.cardview.widget.CardView[' + str(
                                          i) + ']').click()
 
         self.driver.find_element(*TestHome.continue_btn).click()
@@ -387,7 +387,10 @@ class TestHome:
 
     def practice_taking(self):
         time.sleep(10)
-        self.driver.find_element(*TestHome.deny_mic_access).click()
+        try:
+            self.driver.find_element(*TestHome.deny_mic_access).click()
+        except:
+            pass
 
         for i in range(1, 4):
             try:
