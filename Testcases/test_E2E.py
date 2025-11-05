@@ -643,6 +643,30 @@ class TestEmbibeApp(BaseClass):
         UH.UH_School_Assignment_Assignment()
 
     @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.liveclasses
+    @pytest.mark.smoke
+    def test_recorded_classes(self):
+        self._login_with_password()
+        UH = UserHome(self.driver)
+        UH.UH_recorded_classes()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.revisionlist
+    @pytest.mark.smoke
+    def test_revision_list_questions(self):
+        self._login_with_password()
+        UH = UserHome(self.driver)
+        UH.UH_revision_list_questions()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
+    @pytest.mark.revisionlist
+    @pytest.mark.smoke
+    def test_revision_list_videos(self):
+        self._login_with_password()
+        UH = UserHome(self.driver)
+        UH.UH_revision_list_videos()
+
+    @pytest.mark.usefixtures("appiumdriver", "log_on_failure")
     @pytest.mark.smoke
     def test_profile_menu_change_language(self):
         self._login_with_password()

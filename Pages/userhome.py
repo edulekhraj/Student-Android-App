@@ -1,8 +1,9 @@
-import time
 
 from appium.webdriver.common.appiumby import AppiumBy
-from selenium.common import NoSuchElementException
-
+from selenium.webdriver.common.actions.action_builder import ActionBuilder
+from selenium.webdriver.common.actions.pointer_input import PointerInput
+from selenium.webdriver.common.actions import interaction
+import time
 from Pages.landingPages import landingpages
 from Pages.searchpage import Search_Module
 from Pages.testhome import TestHome
@@ -15,13 +16,13 @@ class UserHome(TestHome):
         self.driver = driver
 
     guided_tour_cancel_btn = AppiumBy.ID, 'com.embibe.student:id/ivClose'
-    live_classes_btn = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/tvSubjectName" and @text="LIVE CLASSES"]'
+    live_classes_btn = AppiumBy.XPATH, '//*[contains(@text,"RECORDED CLASSES")]'
     revision_list_btn = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/tvSubjectName" and @text="REVISION LISTS"]'
     my_timeline_btn = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/tvSubjectName" and @text="MY TIMELINE"]'
     my_home_btn = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/tvSubjectName" and @text="MY HOME"]'
     home_tab = AppiumBy.ID, 'com.embibe.student:id/navigation_home'
     my_favourite_books = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="My Favourite Books"]'
-    live_classes_for_7_days_carousel = AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.embibe.student:id/header" and @text="Live Classes for the next 7 days"]'
+    past_class_carousel = AppiumBy.XPATH, '//*[contains(@text,"Past Classes")]'
     RL_topics_to_revise = AppiumBy.XPATH, '//android.widget.TextView[@text="Topics to revise"]'
     manage_books = AppiumBy.ID, 'com.embibe.student:id/favouriteBooksIcon'
     select_book = AppiumBy.XPATH, '(//android.widget.FrameLayout[@resource-id="com.embibe.student:id/video_banner_card_view"])[1]'
@@ -116,7 +117,6 @@ class UserHome(TestHome):
         self.driver.find_element(*UserHome.play_all_btn).click()
         time.sleep(5)
 
-
     def UH_bookmark_questions(self):
         self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
         self.driver.find_element(*UserHome.home_tab).click()
@@ -128,6 +128,63 @@ class UserHome(TestHome):
         self.driver.find_element(*UserHome.play_all_btn).click()
         time.sleep(5)
 
+    def UH_recorded_classes(self):
+        self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
+        self.driver.find_element(*UserHome.home_tab).click()
+        ScrollUtil.swipeUp(1, self.driver)
+        self.driver.find_element(*UserHome.live_classes_btn).click()
+        ScrollUtil.swipeUp(1, self.driver)
+        ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.past_class_carousel)
+
+        self.driver.find_element(AppiumBy.XPATH, '//android.widget.TextView[@text="Past Classes"]/parent::android.widget.RelativeLayout/parent::android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.TextView[@text="Watch Now"]').click()
+        self.driver.find_element(AppiumBy.XPATH, '//*[@text="Watch Recording"]').click()
+        time.sleep(5)
+
+    def UH_revision_list(self):
+        self.driver.find_element(*UserHome.guided_tour_cancel_btn).click()
+        self.driver.find_element(*UserHome.home_tab).click()
+        My_Home = self.driver.find_element(AppiumBy.XPATH, "//*[@text='RECORDED CLASSES']")
+        ScrollUtil.swipeUp(1, self.driver)
+
+        # Get coordinates and size
+        location =My_Home.location
+        size = My_Home.size
+
+        # Start from right side of element, end at left side
+        start_x = location['x'] + size['width'] * 1
+        start_y = location['y'] + size['height'] / 2
+        end_x = location['x'] + size['width'] * 0.3
+
+        # Define touch pointer
+        finger = PointerInput(interaction.POINTER_TOUCH, "finger")
+
+        # Build the swipe action
+        actions = ActionBuilder(self.driver, mouse=finger)
+        actions.pointer_action.move_to_location(start_x, start_y)
+        actions.pointer_action.pointer_down()
+        actions.pointer_action.move_to_location(end_x, start_y)
+        actions.pointer_action.move_to_location(end_x, start_y)
+        actions.pointer_action.pause(0.2)
+        actions.pointer_action.release()
+
+        # Perform the action
+        actions.perform()
+
+        self.driver.find_element(*UserHome.revision_list_btn).click()
+        time.sleep(5)
+
+    def UH_revision_list_questions(self):
+        self.UH_revision_list()
+        ScrollUtil.swipeUp(1, self.driver)
+        self.driver.find_element(AppiumBy.XPATH, "//*[@text='IMPORTANT QUESTIONS']").click()
+        time.sleep(2)
+
+    def UH_revision_list_videos(self):
+        self.UH_revision_list()
+        ScrollUtil.swipeUp(1,self.driver)
+        self.driver.find_element(*UserHome.RL_topics_to_revise).click()
+        time.sleep(2)
+
     def school_cred(self):
         lp = landingpages(self.driver)
         lp.school_credential_login()
@@ -138,7 +195,7 @@ class UserHome(TestHome):
         self.driver.find_element(*UserHome.home_tab).click()
         time.sleep(5)
         ScrollUtil.swipeUp(1, self.driver)
-        ScrollUtil.scroll_until_element_is_visible(self.driver,UserHome.school_test_carousel)
+        ScrollUtil.scroll_until_element_is_visible(self.driver, UserHome.school_test_carousel)
         time.sleep(3)
         self.driver.find_element(*UserHome.school_test_carousel_1_tile).click()
         time.sleep(3)
